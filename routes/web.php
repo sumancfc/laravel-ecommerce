@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,13 +42,19 @@ Route::middleware([
     })->name('admin.dashboard');
 });
 
-// Category route
 Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authadmin']], function(){
+    // Category route
     Route::get("/categories", [CategoryController::class, "AllCategories"])->name("view.category");
     Route::post("/category/store", [CategoryController::class, "StoreCategory"])->name("store.category");
     Route::get("/category/edit/{id}", [CategoryController::class, "EditCategory"])->name("edit.category");
     Route::post("/category/update/{id}", [CategoryController::class, "UpdateCategory"])->name("update.category");
     Route::get("/category/delete/{id}", [CategoryController::class, "DeleteCategory"])->name("delete.category");
+    // Brand route
+    Route::get("/brands", [BrandController::class, "AllBrands"])->name("view.brand");
+    Route::post("/brand/store", [BrandController::class, "StoreBrand"])->name("store.brand");
+    Route::get("/brand/edit/{id}", [BrandController::class, "EditBrand"])->name("edit.brand");
+    Route::post("/brand/update/{id}", [BrandController::class, "UpdateBrand"])->name("update.brand");
+    Route::get("/brand/delete/{id}", [BrandController::class, "DeleteBrand"])->name("delete.brand");
 });
 
 

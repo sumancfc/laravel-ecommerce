@@ -28,17 +28,4 @@
        </div><!-- card -->
 </div><!-- sl-pagebody -->
 
-<div id="modal" class="modal fade">
-       <div class="modal-dialog modal-sm" role="document">
-         <div class="modal-content bd-0 tx-14">
-           <div class="modal-header pd-x-20">
-             <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Edit Category</h6>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-             </button>
-           </div>
-
-         </div>
-       </div><!-- modal-dialog -->
-</div><!-- modal -->
 @endsection
