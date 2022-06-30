@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,8 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
-
-Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
-    Route::get("/login", [AdminController::class, 'Login']);
-    Route::post("/login", [AdminController::class, 'store'])->name("admin.login");
-    Route::get('/logout', [AdminController::class, 'Logout'])->name('admin.logout');
-});
-// Route::group(['middleware' => 'revalidate', 'auth:sanctum'],function(){
-// });
 
 // For User Routes
 Route::middleware([
@@ -32,18 +25,29 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/user/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('user.dashboard');
 });
 // For Admin Routes
 Route::middleware([
-    'auth:sanctum,admin',
+    'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'authadmin'
 ])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('backend.admin.index');
-    })->name('dashboard');
+    })->name('admin.dashboard');
 });
+
+// Category route
+Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum', config('jetstream.auth_session'), 'verified', 'authadmin']], function(){
+    Route::get("/categories", [CategoryController::class, "AllCategories"])->name("view.category");
+    Route::post("/category/store", [CategoryController::class, "StoreCategory"])->name("store.category");
+    Route::get("/category/edit/{id}", [CategoryController::class, "EditCategory"])->name("edit.category");
+    Route::post("/category/update/{id}", [CategoryController::class, "UpdateCategory"])->name("update.category");
+    Route::get("/category/delete/{id}", [CategoryController::class, "DeleteCategory"])->name("delete.category");
+});
+
 

@@ -110,11 +110,4 @@ class AdminController extends Controller
 
         return app(LogoutResponse::class);
     }
-
-    public function Logout()
-    {
-        Auth::logout();
-        return Redirect('/');
-    }
-
 }
