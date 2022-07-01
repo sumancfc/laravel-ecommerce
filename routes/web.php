@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,12 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum', config('jetstre
     Route::get("/brand/edit/{id}", [BrandController::class, "EditBrand"])->name("edit.brand");
     Route::post("/brand/update/{id}", [BrandController::class, "UpdateBrand"])->name("update.brand");
     Route::get("/brand/delete/{id}", [BrandController::class, "DeleteBrand"])->name("delete.brand");
+    // Sub Category route
+    Route::get("/subcategories", [SubCategoryController::class, "AllSubCategories"])->name("view.subcategory");
+    Route::post("/subcategory/store", [SubCategoryController::class, "StoreSubCategory"])->name("store.subcategory");
+    Route::get("/subcategory/edit/{id}", [SubCategoryController::class, "EditSubCategory"])->name("edit.subcategory");
+    Route::post("/subcategory/update/{id}", [SubCategoryController::class, "UpdateSubCategory"])->name("update.subcategory");
+    Route::get("/subcategory/delete/{id}", [SubCategoryController::class, "DeleteSubCategory"])->name("delete.subcategory");
 });
 
 
