@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,12 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum', config('jetstre
     Route::get("/subcategory/edit/{id}", [SubCategoryController::class, "EditSubCategory"])->name("edit.subcategory");
     Route::post("/subcategory/update/{id}", [SubCategoryController::class, "UpdateSubCategory"])->name("update.subcategory");
     Route::get("/subcategory/delete/{id}", [SubCategoryController::class, "DeleteSubCategory"])->name("delete.subcategory");
+    // Coupon route
+    Route::get("/coupons", [CouponController::class, "AllCoupons"])->name("view.coupon");
+    Route::post("/coupon/store", [CouponController::class, "StoreCoupon"])->name("store.coupon");
+    Route::get("/coupon/edit/{id}", [CouponController::class, "EditCoupon"])->name("edit.coupon");
+    Route::post("/coupon/update/{id}", [CouponController::class, "UpdateCoupon"])->name("update.coupon");
+    Route::get("/coupon/delete/{id}", [CouponController::class, "DeleteCoupon"])->name("delete.coupon");
 });
 
 

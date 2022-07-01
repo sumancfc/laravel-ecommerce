@@ -20,6 +20,12 @@
           <li class="nav-item"><a href="{{ route("view.subcategory") }}" class="nav-link">Sub Categories</a></li>
           <li class="nav-item"><a href="{{ route("view.brand") }}" class="nav-link">Brands</a></li>
         </ul>
+        <a href="{{route('view.coupon')}}" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-pricetag-outline tx-22"></i>
+            <span class="menu-item-label">Coupons</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
